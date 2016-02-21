@@ -17,10 +17,10 @@ class MobilesController extends Controller
 
         $perPage = $request->get('perPage', 10);
 
-        $mobiles = Mobile::simplePaginate($perPage);
+        $mobiles = Mobile::paginate($perPage);
 
 
-        return view('search.result', compact('mobiles', 'perPage', 'perPageSelect'));
+        return view('search.result', compact('mobiles', 'perPageSelect'));
     }
         
 }

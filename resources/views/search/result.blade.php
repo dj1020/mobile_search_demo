@@ -11,7 +11,7 @@
         <form method="get">
             <select name="perPage" id="perPage">
                 @foreach ($perPageSelect as $val)
-                    <option value="{{ $val }}"  {{ $perPage == $val ? 'selected' : '' }}>{{ $val }}</option>
+                    <option value="{{ $val }}"  {{ $mobiles->perPage() == $val ? 'selected' : '' }}>{{ $val }}</option>
                 @endforeach
             </select>
             <button type="submit">Search</button>
@@ -43,7 +43,7 @@
             </tr>
             @endforeach
         </table>
-        {!! $mobiles->appends(['perPage' => $perPage])->links() !!}
+        {!! $mobiles->appends(['perPage' => $mobiles->perPage()])->links() !!}
     </div>
 </body>
 </html>
