@@ -21,9 +21,7 @@ class MobilesController extends Controller
         $brandId = $request->get('brandId', 0);
 
         $brands = Brand::all();
-        $mobiles = ($brandId == 0)
-            ? Mobile::with('brand')->paginate($perPage)
-            : Mobile::where('brand_id', $brandId)->with('brand')->paginate($perPage);
+        $mobiles = Mobile::withBrand($brandId)->paginate($perPage);
 
         $viewResponse = view('search.result',
             compact('mobiles', 'brands', 'perPageSelect', 'brandId')
