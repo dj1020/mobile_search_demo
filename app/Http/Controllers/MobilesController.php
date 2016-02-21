@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use DB;
 use App\Mobile;
 use Illuminate\Http\Request;
@@ -14,19 +15,19 @@ class MobilesController extends Controller
 
     public function search(Request $request)
     {
-        $perPageSelect = [5, 10, 15, 20];
+        $perPageSelect = [5, 8, 12, 24];
 
-        $perPage = $request->get('perPage', 10);
+        $perPage = $request->get('perPage', 8);
+        $brandId = $request->get('brandId', 0);
 
-        DB::enableQueryLog();
+        $brands = Brand::all();
+        $mobiles = ($brandId == 0)
+            ? Mobile::with('brand')->paginate($perPage)
+            : Mobile::where('brand_id', $brandId)->with('brand')->paginate($perPage);
 
-        $mobiles = Mobile::with('brand')->paginate($perPage);
-
-        $viewResponse = view('search.result', compact('mobiles', 'perPageSelect'));
-
-        var_dump(DB::getQueryLog());
-
-        DB::disableQueryLog();
+        $viewResponse = view('search.result',
+            compact('mobiles', 'brands', 'perPageSelect', 'brandId')
+        );
 
         return $viewResponse;
     }
