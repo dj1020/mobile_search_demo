@@ -10,10 +10,9 @@
 
         <form method="get">
             <select name="perPage" id="perPage">
-                <option value="5"  {{ $perPage == 5 ? 'selected' : '' }}>5</option>
-                <option value="10" {{ $perPage == 10 ? 'selected' : '' }}>10</option>
-                <option value="15" {{ $perPage == 15 ? 'selected' : '' }}>15</option>
-                <option value="20" {{ $perPage == 20 ? 'selected' : '' }}>20</option>
+                @foreach ($perPageSelect as $val)
+                    <option value="{{ $val }}"  {{ $perPage == $val ? 'selected' : '' }}>{{ $val }}</option>
+                @endforeach
             </select>
             <button type="submit">Search</button>
         </form>
