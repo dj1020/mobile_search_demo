@@ -9,12 +9,11 @@
     <div>
 
         <form method="get">
-            <select name="perPage" id="perPage">
+            <select name="perPage" id="perPage" onChange="this.form.submit()">
                 @foreach ($perPageSelect as $val)
                     <option value="{{ $val }}"  {{ $mobiles->perPage() == $val ? 'selected' : '' }}>{{ $val }}</option>
                 @endforeach
             </select>
-            <button type="submit">Search</button>
         </form>
 
         <table>
