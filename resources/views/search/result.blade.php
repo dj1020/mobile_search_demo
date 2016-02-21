@@ -16,6 +16,8 @@
             </select>
         </form>
 
+        <p>第 {{ $mobiles->currentPage() }} / {{ $mobiles->lastPage() }} 頁，總筆數 {{ $mobiles->total() }} 筆</p>
+
         <table>
             <tr>
                 <th>ID</th>
