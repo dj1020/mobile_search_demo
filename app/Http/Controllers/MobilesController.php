@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Mobile;
 use Illuminate\Http\Request;
 
@@ -17,10 +18,17 @@ class MobilesController extends Controller
 
         $perPage = $request->get('perPage', 10);
 
-        $mobiles = Mobile::paginate($perPage);
+        DB::enableQueryLog();
 
+        $mobiles = Mobile::with('brand')->paginate($perPage);
 
-        return view('search.result', compact('mobiles', 'perPageSelect'));
+        $viewResponse = view('search.result', compact('mobiles', 'perPageSelect'));
+
+        var_dump(DB::getQueryLog());
+
+        DB::disableQueryLog();
+
+        return $viewResponse;
     }
         
 }

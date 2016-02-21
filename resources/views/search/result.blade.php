@@ -25,7 +25,6 @@
             <span class="pull-right">第 {{ $mobiles->currentPage() }} / {{ $mobiles->lastPage() }} 頁，總筆數 {{ $mobiles->total() }} 筆</span>
         </form>
 
-        {{ DB::enableQueryLog() }}
         <table class="table">
             <tr>
                 <th>ID</th>
@@ -53,9 +52,6 @@
             @endforeach
         </table>
         {!! $mobiles->appends(['perPage' => $mobiles->perPage()])->links() !!}
-
-        {{ dd(DB::getQueryLog()) }}
-        {{ DB::disableQueryLog() }}
     </div>
 </body>
 </html>
