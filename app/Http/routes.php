@@ -11,6 +11,8 @@
 |
 */
 
+use App\Mobile;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,4 +31,9 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     Route::get('/mobiles', 'MobilesController@search');
     Route::get('/brand/{brand}/mobiles', 'MobilesController@brandSearch');
+    Route::get('test', function () {
+        $mobile = Mobile::first();
+
+        dd($mobile->brand);
+    });
 });

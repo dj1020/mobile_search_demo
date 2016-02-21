@@ -25,8 +25,7 @@
             <span class="pull-right">第 {{ $mobiles->currentPage() }} / {{ $mobiles->lastPage() }} 頁，總筆數 {{ $mobiles->total() }} 筆</span>
         </form>
 
-
-
+        {{ DB::enableQueryLog() }}
         <table class="table">
             <tr>
                 <th>ID</th>
@@ -43,7 +42,7 @@
             <tr>
                 <td>{{ $mobile->id }}</td>
                 <td><img src="{{ $mobile->pic }}" alt="" height="60"/></td>
-                <td>{{ $mobile->name }}</td>
+                <td>{{ $mobile->brand->name }}</td>
                 <td>{{ $mobile->name }}</td>
                 <td>{{ $mobile->monitor_size }}</td>
                 <td>{{ $mobile->weight }}</td>
@@ -54,6 +53,9 @@
             @endforeach
         </table>
         {!! $mobiles->appends(['perPage' => $mobiles->perPage()])->links() !!}
+
+        {{ dd(DB::getQueryLog()) }}
+        {{ DB::disableQueryLog() }}
     </div>
 </body>
 </html>
