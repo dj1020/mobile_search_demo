@@ -99,7 +99,8 @@
                          width="200"
                          height="200" class="img-rounded"/>
                 </div>
-                <input type="file" name="mobile_image" id=""/>
+                <input type="file" name="mobile_image" id=""
+                       onchange="previewImg(this, '#mobileThumbnail')"/>
             </div>
 
             <div class="form-group submit-btn-section">
