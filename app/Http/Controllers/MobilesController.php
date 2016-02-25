@@ -13,7 +13,18 @@ use App\Http\Controllers\Controller;
 class MobilesController extends Controller
 {
 
-    public function search(Request $request)
+    public function create()
+    {
+        $brands = Brand::all();
+        return view('mobiles.create', compact('brands'));
+    }
+
+    public function store(Request $request)
+    {
+        return $request->all();
+    }
+
+    public function index(Request $request)
     {
         $perPageSelect = [5, 8, 12, 24];
 

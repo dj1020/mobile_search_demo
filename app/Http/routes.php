@@ -29,11 +29,5 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/mobiles', 'MobilesController@search');
-    Route::get('/brand/{brand}/mobiles', 'MobilesController@brandSearch');
-    Route::get('test', function () {
-        $mobile = Mobile::first();
-
-        dd($mobile->brand);
-    });
+    Route::resource('mobiles', 'MobilesController');
 });
