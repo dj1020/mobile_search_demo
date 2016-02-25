@@ -95,7 +95,7 @@
 
             <div class="col-sm-3">
                 <div class="mobileImg">
-                    <img id="mobileThumbnail" src="" alt=""
+                    <img id="mobileThumbnail" src="http://placehold.it/200X200" alt=""
                          width="200"
                          height="200" class="img-rounded"/>
                 </div>
