@@ -94,9 +94,8 @@
             </div>
 
             <div class="col-sm-3">
-                <div class="mobileImg">
+                <div class="mobileImg text-center">
                     <img id="mobileThumbnail" src="http://placehold.it/200X200" alt=""
-                         width="200"
                          height="200" class="img-rounded"/>
                 </div>
                 <input type="file" name="mobile_image" id=""
