@@ -67,7 +67,7 @@
                 <div class="form-group">
                     <label for="mobileRom" class="col-sm-3 control-label">Rom(GB)</label>
                     <div class="col-sm-9">
-                        <input type="text" name="weight" class="form-control"
+                        <input type="text" name="rom" class="form-control"
                                id="mobileRom" placeholder="(GBytes) here...">
                     </div>
                 </div>

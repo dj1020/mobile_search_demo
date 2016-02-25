@@ -16,12 +16,26 @@ class MobilesController extends Controller
     public function create()
     {
         $brands = Brand::all();
+
         return view('mobiles.create', compact('brands'));
     }
 
     public function store(Request $request)
     {
-        return $request->all();
+        $inputs = $request->except('_token');
+
+        $mobileImg = $request->file('mobile_image');
+        if ($mobileImg) {
+            $brand = Brand::findOrFail($request->get('brand_id'));
+            $path = public_path('img/' . $brand->name);
+            $filename = $mobileImg->getClientOriginalName();
+            $mobileImg->move($path, $filename);
+            $inputs = array_merge($inputs, ['pic' => "/img/{$brand->name}/$filename"]);
+        }
+
+        $mobile = Mobile::create($inputs);
+
+        return redirect('/mobiles');
     }
 
     public function index(Request $request)
@@ -32,7 +46,10 @@ class MobilesController extends Controller
         $brandId = $request->get('brandId', 0);
 
         $brands = Brand::all();
-        $mobiles = Mobile::withBrand($brandId)->paginate($perPage);
+        $mobiles = Mobile::withBrand($brandId)
+            ->orderby('id', 'DESC')
+            ->orderby('created_at', 'DESC')
+            ->paginate($perPage);
 
         $viewResponse = view('search.result',
             compact('mobiles', 'brands', 'perPageSelect', 'brandId')
@@ -40,5 +57,5 @@ class MobilesController extends Controller
 
         return $viewResponse;
     }
-        
+
 }

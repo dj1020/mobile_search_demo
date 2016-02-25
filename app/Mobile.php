@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mobile extends Model
 {
+    protected $fillable = [
+        "id",
+        "name",
+        "monitor_size",
+        "weight",
+        "rom",
+        "camera_pixel",
+        "has_memory_slot",
+        "pic",
+        "brand_id",
+    ];
+
     public function brand()
     {
         return $this->belongsTo(Brand::class);
