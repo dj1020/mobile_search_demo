@@ -5,11 +5,12 @@
     <title>{{ $pageTitle }}</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
     @yield('customStyle')
     @yield('headerJs')
 </head>
 <body>
     @yield('body')
-</body>
     @yield('footerJs')
+</body>
 </html>

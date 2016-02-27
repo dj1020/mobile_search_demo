@@ -5,9 +5,32 @@
         img {
             margin-bottom: 10px;
         }
-
         .submit-btn-section {
             margin-top: 20px;
+        }
+        .uploader {
+            position: relative;
+        }
+        .uploader img {
+            height: 200px;
+        }
+        .uploader img.hover {
+            border:3px dashed #a94442;
+            opacity: 0.8;
+        }
+        .uploader input[type=file] {
+            position: absolute;
+            top: 0px;
+            width: 200px;
+            height: 200px;
+            background-color: yellowgreen;
+            opacity: 0;
+
+            /* Center a pos:absolute element */
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
         }
     </style>
 @endsection
@@ -17,6 +40,7 @@
 @endsection
 
 @section('footerJs')
+    <script src="/js/drogdrop.js"></script>
 @endsection
 
 @section('body')
@@ -93,13 +117,12 @@
                 </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-3 uploader">
                 <div class="mobileImg text-center">
-                    <img id="mobileThumbnail" src="http://placehold.it/200X200" alt=""
-                         height="200" class="img-rounded"/>
+                    <img id="mobileThumbnail" src="/DrogAndDrop.png" alt="Drog & Drop Here" class="img-rounded"/>
+                    <input type="file" name="mobile_image" id=""
+                           onchange="previewImg(this, '#mobileThumbnail')"/>
                 </div>
-                <input type="file" name="mobile_image" id=""
-                       onchange="previewImg(this, '#mobileThumbnail')"/>
             </div>
 
             <div class="form-group submit-btn-section">
