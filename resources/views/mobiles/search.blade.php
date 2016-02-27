@@ -42,10 +42,10 @@
                     Size("): </label>
                 <div class="col-sm-10">
                     <input type="text" name="smallest_size" class="form-control"
-                           style="max-width: 25%; display: inline-block;"/>
+                           style="max-width: 10%; display: inline-block;"/>
                     -
                     <input type="text" name="biggest_size" class="form-control"
-                           style="max-width: 25%; display: inline-block;"/>
+                           style="max-width: 10%; display: inline-block;"/>
                 </div>
             </div>
             <div class="form-group">

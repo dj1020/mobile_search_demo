@@ -44,11 +44,15 @@ class MobilesController extends Controller
 
         $perPage = $request->get('perPage', 8);
         $brandId = $request->get('brandId', 0);
+        $smallestMonitorSize = $request->get('smallest_size', 0);
+        $biggestMonitorSize = $request->get('biggest_size', 100);
 
         $brands = Brand::all();
         $mobiles = Mobile::withBrand($brandId)
             ->orderby('id', 'DESC')
             ->orderby('created_at', 'DESC')
+            ->where('monitor_size', '>=', $smallestMonitorSize)
+            ->where('monitor_size', '<=', $biggestMonitorSize)
             ->paginate($perPage);
 
         $viewResponse = view('mobiles.search',
