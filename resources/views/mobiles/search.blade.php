@@ -17,22 +17,43 @@
 @section('body')
     <div class="container">
         <h1>
-            Search Result
+            Search
             <a href="/mobiles/create" class="btn btn-primary pull-right">新增</a>
         </h1>
 
-        <form method="get" class="form-inline">
+        <hr/>
+
+        <form method="get" class="form-horizontal">
             <div class="form-group">
-                品牌：
-                <select name="brandId" id="brandSelector" onChange="this.form.submit()">
-                    <option value="0">-- ALL --</option>
-                    @foreach ($brands as $brand)
-                        <option value="{{ $brand->id }}"
-                                {{ $brandId == $brand->id ? 'selected' : '' }}
-                        >{{ $brand->name }}</option>
-                    @endforeach
-                </select>
+                <label for="brandSelector" class="control-label col-sm-2">Brand: </label>
+                <div class="col-sm-3">
+                    <select name="brandId" id="brandSelector" class="form-control">
+                        <option value="0">-- ALL --</option>
+                        @foreach ($brands as $brand)
+                            <option value="{{ $brand->id }}"
+                                    {{ $brandId == $brand->id ? 'selected' : '' }}
+                            >{{ $brand->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
+            <div class="form-group">
+                <label for="monitorFilter" class="control-label col-sm-2">Monitor
+                    Size("): </label>
+                <div class="col-sm-10">
+                    <input type="text" name="smallest_size" class="form-control"
+                           style="max-width: 25%; display: inline-block;"/>
+                    -
+                    <input type="text" name="biggest_size" class="form-control"
+                           style="max-width: 25%; display: inline-block;"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-2">
+                    <button class="btn btn-info" type="submit">送出查詢</button>
+                </div>
+            </div>
+
             <span class="pull-right">第 {{ $mobiles->currentPage() }}
                 / {{ $mobiles->lastPage() }} 頁，總筆數 {{ $mobiles->total() }} 筆</span>
 
