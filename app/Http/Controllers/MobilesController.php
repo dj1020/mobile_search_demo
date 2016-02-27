@@ -51,7 +51,7 @@ class MobilesController extends Controller
             ->orderby('created_at', 'DESC')
             ->paginate($perPage);
 
-        $viewResponse = view('search.result',
+        $viewResponse = view('mobiles.search',
             compact('mobiles', 'brands', 'perPageSelect', 'brandId')
         );
 
