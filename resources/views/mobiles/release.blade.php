@@ -14,33 +14,10 @@
             margin-right: 5px;
         }
 
-        .uploader {
-            position: relative;
-        }
-
         .uploader img {
             height: 200px;
         }
 
-        .uploader img.hover {
-            border: 3px dashed #a94442;
-            opacity: 0.8;
-        }
-
-        .uploader input[type=file] {
-            position: absolute;
-            top: 0px;
-            width: 200px;
-            height: 200px;
-            background-color: yellowgreen;
-            opacity: 0;
-
-            /* Center a pos:absolute element */
-            margin-left: auto;
-            margin-right: auto;
-            left: 0;
-            right: 0;
-        }
     </style>
 @endsection
 
@@ -128,13 +105,15 @@
                 <div class="col-sm-9">
                     <div class="col-sm-offset-3 col-sm-9">
 
+                        @if (! $mobile->hasReleased())
                         <form action="/mobiles/release/{{ $mobile->id }}" method="post"
                               class="pull-left">
                             {{ csrf_field() }}
                             {{ method_field('PATCH') }}
-                            <button type="submit" class="btn btn-primary">Release</button>
+                            <button type="submit" class="btn btn-danger">Release</button>
                         </form>
 
+                        @else
                         <form action="/mobiles/unrelease/{{ $mobile->id }}" method="post"
                               class="pull-left">
                             {{ csrf_field() }}
@@ -143,6 +122,7 @@
                             </button>
                         </form>
 
+                        @endif
                         <a href="{{ url('mobiles') }}" class="btn btn-default pull-left">Cancel</a>
 
                     </div>
@@ -151,17 +131,4 @@
 
         </div>
     </div>
-    {{--
-    "id"
-    "name"
-    "monitor_size"
-    "weight"
-    "rom"
-    "camera_pixel"
-    "has_memory_slot"
-    "pic"
-    "brand_id"
-    "created_at"
-    "updated_at"
-    --}}
 @endsection
