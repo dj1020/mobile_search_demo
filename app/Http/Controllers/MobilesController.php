@@ -55,6 +55,7 @@ class MobilesController extends Controller
             ->where('monitor_size', '<=', $biggestMonitorSize)
             ->paginate($perPage);
 
+        $request->flash(); // 把所有 request 參數放進 session，可用 old 取出
         $viewResponse = view('mobiles.search',
             compact('mobiles', 'brands', 'perPageSelect', 'brandId')
         );

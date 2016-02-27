@@ -3,7 +3,7 @@
 @section('customStyle')
     <style>
         table {
-            margin-top: 20px;
+            margin-top: 10px;
         }
     </style>
 @endsection
@@ -31,7 +31,7 @@
                         <option value="0">-- ALL --</option>
                         @foreach ($brands as $brand)
                             <option value="{{ $brand->id }}"
-                                    {{ $brandId == $brand->id ? 'selected' : '' }}
+                                    {{ old('brandId') == $brand->id ? 'selected' : '' }}
                             >{{ $brand->name }}</option>
                         @endforeach
                     </select>
@@ -42,10 +42,14 @@
                     Size("): </label>
                 <div class="col-sm-10">
                     <input type="text" name="smallest_size" class="form-control"
-                           style="max-width: 10%; display: inline-block;"/>
+                           style="max-width: 10%; display: inline-block;"
+                           value="{{ old('smallest_size') }}"
+                    />
                     -
                     <input type="text" name="biggest_size" class="form-control"
-                           style="max-width: 10%; display: inline-block;"/>
+                           style="max-width: 10%; display: inline-block;"
+                           value="{{ old('biggest_size') }}"
+                    />
                 </div>
             </div>
             <div class="form-group">
@@ -54,9 +58,21 @@
                 </div>
             </div>
 
-            <span class="pull-right">第 {{ $mobiles->currentPage() }}
-                / {{ $mobiles->lastPage() }} 頁，總筆數 {{ $mobiles->total() }} 筆</span>
-
+            <div class="row">
+                <div class="container">
+                每頁
+                <select name="perPage" id="perPage" onChange="this.form.submit()">
+                    @foreach ($perPageSelect as $perPageCount)
+                        <option value="{{ $perPageCount }}"
+                                {{ $mobiles->perPage() == $perPageCount ? 'selected' : '' }}
+                        >{{ $perPageCount }}</option>
+                    @endforeach
+                </select>
+                筆
+                <span class="pull-right">第 {{ $mobiles->currentPage() }}
+                    / {{ $mobiles->lastPage() }} 頁，總筆數 {{ $mobiles->total() }} 筆</span>
+                </div>
+            </div>
             <table class="table">
                 <tr>
                     <th>ID</th>
@@ -83,16 +99,6 @@
                     </tr>
                 @endforeach
             </table>
-            <div class="form-group">每頁
-                <select name="perPage" id="perPage" onChange="this.form.submit()">
-                    @foreach ($perPageSelect as $perPageCount)
-                        <option value="{{ $perPageCount }}"
-                                {{ $mobiles->perPage() == $perPageCount ? 'selected' : '' }}
-                        >{{ $perPageCount }}</option>
-                    @endforeach
-                </select>
-                筆
-            </div>
         </form>
 
         {!! $mobiles->appends( request()->except('page') )->links() !!}
