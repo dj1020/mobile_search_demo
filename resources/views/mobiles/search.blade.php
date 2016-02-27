@@ -95,6 +95,6 @@
             </div>
         </form>
 
-        {!! $mobiles->appends(['perPage' => $mobiles->perPage(), 'brandId' => $brandId])->links() !!}
+        {!! $mobiles->appends( request()->except('page') )->links() !!}
     </div>
 @endsection
