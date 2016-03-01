@@ -30,7 +30,4 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     Route::resource('mobiles', 'MobilesController');
-    Route::get('/test', function () {
-        return view('mobiles.test');
-    });
 });

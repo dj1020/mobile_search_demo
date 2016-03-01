@@ -53,12 +53,17 @@ class MobilesController extends Controller
             ->where('monitor_size', '>=', $smallestMonitorSize)
             ->where('monitor_size', '<=', $biggestMonitorSize)
             ->orderby('id', 'DESC')
-            ->orderby('created_at', 'DESC')
-            ->paginate($perPage);
+            ->orderby('created_at', 'DESC');
+
+        if ( $request->has('has_memory_slot') ) {
+            $mobiles = $mobiles->where('has_memory_slot', $request->get('has_memory_slot'));
+        }
+
+        $mobiles = $mobiles->paginate($perPage);
 
         $request->flash(); // 把所有 request 參數放進 session，可用 old 取出
         $viewResponse = view('mobiles.search',
-            compact('mobiles', 'brands', 'perPageSelect', 'brandId')
+            compact('mobiles', 'brands', 'perPageSelect', 'brandId', 'request')
         );
 
         return $viewResponse;
