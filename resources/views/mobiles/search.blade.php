@@ -30,23 +30,13 @@
 
         <hr/>
 
-        {{ var_dump($request->all()) }}
+{{--        {{ var_dump($request->all()) }}--}}
 
-        {{--<form method="get" class="form-horizontal">--}}
         {!! Form::open(['method' => 'get', 'class' => 'form-horizontal']) !!}
             <div class="form-group">
                 <label for="brandSelector" class="control-label col-sm-2">Brand: </label>
                 <div class="col-sm-3">
                     {{ Form::select('brandId', $brandList, $brandId, ['class' => 'form-control']) }}
-
-                    {{--<select name="brandId" id="brandSelector" class="form-control">--}}
-                        {{--<option value="0">-- ALL --</option>--}}
-                        {{--@foreach ($brands as $brand)--}}
-                            {{--<option value="{{ $brand->id }}"--}}
-                                    {{--{{ old('brandId') == $brand->id ? 'selected' : '' }}--}}
-                            {{-->{{ $brand->name }}</option>--}}
-                        {{--@endforeach--}}
-                    {{--</select>--}}
                 </div>
             </div>
             <div class="form-group">
@@ -65,15 +55,12 @@
                 <div class="col-sm-10">
                     <label class="radio-inline">
                         {{ Form::radio('has_memory_slot', '', true) }} All
-                        {{--<input type="radio" name="has_memory_slot" id="has_memory_slot_all" value=""> All--}}
                     </label>
                     <label class="radio-inline">
                         {{ Form::radio('has_memory_slot', '1') }} Yes
-                        {{--<input type="radio" name="has_memory_slot" id="has_memory_slot_yes" value="1"> Yes--}}
                     </label>
                     <label class="radio-inline">
                         {{ Form::radio('has_memory_slot', '0') }} No
-                        {{--<input type="radio" name="has_memory_slot" id="has_memory_slot_no" value="0"> No--}}
                     </label>
                 </div>
             </div>
@@ -84,33 +71,28 @@
                 <div class="col-sm-10">
                     <label class="checkbox-inline">
                         {{ Form::checkbox('rom[]', '4') }} 4
-                        {{--<input type="checkbox" id="RomSize_4" name="rom[]" value="4"> 4--}}
                     </label>
                     <label class="checkbox-inline">
                         {{ Form::checkbox('rom[]', '8') }} 8
-                        {{--<input type="checkbox" id="RomSize_8" name="rom[]" value="8"> 8--}}
                     </label>
                     <label class="checkbox-inline">
                         {{ Form::checkbox('rom[]', '16') }} 16
-                        {{--<input type="checkbox" id="RomSize_16" name="rom[]" value="16"> 16--}}
                     </label>
                     <label class="checkbox-inline">
                         {{ Form::checkbox('rom[]', '32') }} 32
-                        {{--<input type="checkbox" id="RomSize_32" name="rom[]" value="32"> 32--}}
                     </label>
                     <label class="checkbox-inline">
                         {{ Form::checkbox('rom[]', '64') }} 64
-                        {{--<input type="checkbox" id="RomSize_64" name="rom[]" value="64"> 64--}}
                     </label>
                     <label class="checkbox-inline">
                         {{ Form::checkbox('rom[]', '128') }} 128
-                        {{--<input type="checkbox" id="RomSize_128" name="rom[]" value="128"> 128--}}
                     </label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
                     <button class="btn btn-info" type="submit">送出查詢</button>
+                    <a class="btn btn-default" href="/mobiles">重設條件</a>
                 </div>
             </div>
 
@@ -118,13 +100,6 @@
                 <div class="container">
                 每頁
                 {{ Form::select('perPage', $perPageList, null, ['onChange' => 'this.form.submit()']) }}
-                {{--<select name="perPage" id="perPage" onChange="this.form.submit()">--}}
-                    {{--@foreach ($perPageSelect as $perPageCount)--}}
-                        {{--<option value="{{ $perPageCount }}"--}}
-                                {{--{{ $mobiles->perPage() == $perPageCount ? 'selected' : '' }}--}}
-                        {{-->{{ $perPageCount }}</option>--}}
-                    {{--@endforeach--}}
-                {{--</select>--}}
                 筆
                 <span class="pull-right">第 {{ $mobiles->currentPage() }}
                     / {{ $mobiles->lastPage() }} 頁，總筆數 {{ $mobiles->total() }} 筆</span>
@@ -157,7 +132,6 @@
                 @endforeach
             </table>
         {!! Form::close() !!}
-        {{--</form>--}}
 
         {!! $mobiles->appends( request()->except('page') )->links() !!}
     </div>
