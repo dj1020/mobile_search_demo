@@ -64,10 +64,16 @@ class MobilesController extends Controller
 
         $mobiles = $mobiles->paginate($perPage);
 
-        $request->flash(); // 把所有 request 參數放進 session，可用 old 取出
-        $viewResponse = view('mobiles.search',
-            compact('mobiles', 'brands', 'perPageSelect', 'brandId', 'request')
+        $brandList = [0 => '-- ALL --'] + array_combine(
+            Brand::lists('id')->all(),
+            Brand::lists('name')->all()
         );
+
+        $request->flash(); // 把所有 request 參數放進 session，可用 old 取出
+        $viewResponse = view(
+            'mobiles.search',
+            compact('mobiles', 'brands', 'perPageSelect', 'brandId', 'brandList')
+        )->with(compact('request'));
 
         return $viewResponse;
     }

@@ -5,6 +5,10 @@
         table {
             margin-top: 10px;
         }
+        input[name=smallest_size], input[name=biggest_size] {
+            max-width: 10%;
+            display: inline-block;
+        }
     </style>
 @endsection
 
@@ -25,18 +29,21 @@
 
         {{ var_dump($request->all()) }}
 
-        <form method="get" class="form-horizontal">
+        {{--<form method="get" class="form-horizontal">--}}
+        {!! Form::open(['method' => 'get', 'class' => 'form-horizontal']) !!}
             <div class="form-group">
                 <label for="brandSelector" class="control-label col-sm-2">Brand: </label>
                 <div class="col-sm-3">
-                    <select name="brandId" id="brandSelector" class="form-control">
-                        <option value="0">-- ALL --</option>
-                        @foreach ($brands as $brand)
-                            <option value="{{ $brand->id }}"
-                                    {{ old('brandId') == $brand->id ? 'selected' : '' }}
-                            >{{ $brand->name }}</option>
-                        @endforeach
-                    </select>
+                    {{ Form::select('brandId', $brandList, $brandId, ['class' => 'form-control']) }}
+
+                    {{--<select name="brandId" id="brandSelector" class="form-control">--}}
+                        {{--<option value="0">-- ALL --</option>--}}
+                        {{--@foreach ($brands as $brand)--}}
+                            {{--<option value="{{ $brand->id }}"--}}
+                                    {{--{{ old('brandId') == $brand->id ? 'selected' : '' }}--}}
+                            {{-->{{ $brand->name }}</option>--}}
+                        {{--@endforeach--}}
+                    {{--</select>--}}
                 </div>
             </div>
             <div class="form-group">
@@ -44,12 +51,10 @@
                     Size("): </label>
                 <div class="col-sm-10">
                     <input type="text" name="smallest_size" class="form-control"
-                           style="max-width: 10%; display: inline-block;"
                            value="{{ old('smallest_size') }}"
                     />
                     -
                     <input type="text" name="biggest_size" class="form-control"
-                           style="max-width: 10%; display: inline-block;"
                            value="{{ old('biggest_size') }}"
                     />
                 </div>
@@ -142,7 +147,8 @@
                     </tr>
                 @endforeach
             </table>
-        </form>
+        {!! Form::close() !!}
+        {{--</form>--}}
 
         {!! $mobiles->appends( request()->except('page') )->links() !!}
     </div>
