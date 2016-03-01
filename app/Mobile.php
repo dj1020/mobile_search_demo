@@ -29,4 +29,11 @@ class Mobile extends Model
             ? $query
             : $query->where('brand_id', $brandId);
     }
+
+    public function scopeWithRomSize($query, array $romSizeSelected)
+    {
+        return (empty($romSizeSelected))
+            ? $query
+            : $query->whereIn('rom', $romSizeSelected);
+    }
 }

@@ -70,31 +70,31 @@
                     </label>
                 </div>
             </div>
-            {{--<div class="form-group">--}}
-                {{--<label for="memorySlotFilter" class="control-label col-sm-2">--}}
-                    {{--Rom Size(GB)--}}
-                {{--</label>--}}
-                {{--<div class="col-sm-10">--}}
-                    {{--<label class="checkbox-inline">--}}
-                        {{--<input type="checkbox" id="RomSize_4" name="rom[]" value="4"> 4--}}
-                    {{--</label>--}}
-                    {{--<label class="checkbox-inline">--}}
-                        {{--<input type="checkbox" id="RomSize_8" name="rom[]" value="8"> 8--}}
-                    {{--</label>--}}
-                    {{--<label class="checkbox-inline">--}}
-                        {{--<input type="checkbox" id="RomSize_16" name="rom[]" value="16"> 16--}}
-                    {{--</label>--}}
-                    {{--<label class="checkbox-inline">--}}
-                        {{--<input type="checkbox" id="RomSize_32" name="rom[]" value="32"> 32--}}
-                    {{--</label>--}}
-                    {{--<label class="checkbox-inline">--}}
-                        {{--<input type="checkbox" id="RomSize_64" name="rom[]" value="64"> 64--}}
-                    {{--</label>--}}
-                    {{--<label class="checkbox-inline">--}}
-                        {{--<input type="checkbox" id="RomSize_128" name="rom[]" value="128"> 128--}}
-                    {{--</label>--}}
-                {{--</div>--}}
-            {{--</div>--}}
+            <div class="form-group">
+                <label for="memorySlotFilter" class="control-label col-sm-2">
+                    Rom Size(GB)
+                </label>
+                <div class="col-sm-10">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="RomSize_4" name="rom[]" value="4"> 4
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="RomSize_8" name="rom[]" value="8"> 8
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="RomSize_16" name="rom[]" value="16"> 16
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="RomSize_32" name="rom[]" value="32"> 32
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="RomSize_64" name="rom[]" value="64"> 64
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="RomSize_128" name="rom[]" value="128"> 128
+                    </label>
+                </div>
+            </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-2">
                     <button class="btn btn-info" type="submit">送出查詢</button>

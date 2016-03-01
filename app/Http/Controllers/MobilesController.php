@@ -41,8 +41,7 @@ class MobilesController extends Controller
     public function index(Request $request)
     {
         $perPageSelect = [5, 8, 12, 24];
-
-//        $perPage = $request->get('perPage', 8);
+        
         $perPage = $request->has('perPage') ? request('perPage') : 8;
         $brandId = $request->has('brandId') ? request('brandId') : 0;
         $smallestMonitorSize = $request->has('smallest_size') ? request('smallest_size') : 0;
@@ -57,6 +56,10 @@ class MobilesController extends Controller
 
         if ( $request->has('has_memory_slot') ) {
             $mobiles = $mobiles->where('has_memory_slot', $request->get('has_memory_slot'));
+        }
+
+        if ( $request->has('rom') ) {
+            $mobiles = $mobiles->withRomSize($request->get('rom'));
         }
 
         $mobiles = $mobiles->paginate($perPage);
