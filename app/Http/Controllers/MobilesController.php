@@ -42,17 +42,18 @@ class MobilesController extends Controller
     {
         $perPageSelect = [5, 8, 12, 24];
 
-        $perPage = $request->get('perPage', 8);
-        $brandId = $request->get('brandId', 0);
-        $smallestMonitorSize = $request->get('smallest_size', 0);
-        $biggestMonitorSize = $request->get('biggest_size', 100);
+//        $perPage = $request->get('perPage', 8);
+        $perPage = $request->has('perPage') ? request('perPage') : 8;
+        $brandId = $request->has('brandId') ? request('brandId') : 0;
+        $smallestMonitorSize = $request->has('smallest_size') ? request('smallest_size') : 0;
+        $biggestMonitorSize = $request->has('biggest_size') ? request('biggest_size') : 100;
 
         $brands = Brand::all();
         $mobiles = Mobile::withBrand($brandId)
-            ->orderby('id', 'DESC')
-            ->orderby('created_at', 'DESC')
             ->where('monitor_size', '>=', $smallestMonitorSize)
             ->where('monitor_size', '<=', $biggestMonitorSize)
+            ->orderby('id', 'DESC')
+            ->orderby('created_at', 'DESC')
             ->paginate($perPage);
 
         $request->flash(); // 把所有 request 參數放進 session，可用 old 取出
