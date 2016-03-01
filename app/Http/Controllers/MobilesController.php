@@ -69,10 +69,12 @@ class MobilesController extends Controller
             Brand::lists('name')->all()
         );
 
+        $perPageList = array_combine($perPageSelect, $perPageSelect);
+
         $request->flash(); // 把所有 request 參數放進 session，可用 old 取出
         $viewResponse = view(
             'mobiles.search',
-            compact('mobiles', 'brands', 'perPageSelect', 'brandId', 'brandList')
+            compact('mobiles', 'brands', 'perPageSelect', 'brandId', 'brandList', 'perPageList')
         )->with(compact('request'));
 
         return $viewResponse;

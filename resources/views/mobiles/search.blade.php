@@ -9,6 +9,9 @@
             max-width: 10%;
             display: inline-block;
         }
+        button {
+            display: inline-block;
+        }
     </style>
 @endsection
 
@@ -50,13 +53,9 @@
                 <label for="monitorFilter" class="control-label col-sm-2">Monitor
                     Size("): </label>
                 <div class="col-sm-10">
-                    <input type="text" name="smallest_size" class="form-control"
-                           value="{{ old('smallest_size') }}"
-                    />
+                    {{ Form::text('smallest_size', old('smallest_size'), ['class' => 'form-control']) }}
                     -
-                    <input type="text" name="biggest_size" class="form-control"
-                           value="{{ old('biggest_size') }}"
-                    />
+                    {{ Form::text('biggest_size', old('biggest_size'), ['class' => 'form-control']) }}
                 </div>
             </div>
             <div class="form-group">
@@ -65,13 +64,16 @@
                 </label>
                 <div class="col-sm-10">
                     <label class="radio-inline">
-                        <input type="radio" id="has_memory_slot_all"> All
+                        {{ Form::radio('has_memory_slot', '', true) }} All
+                        {{--<input type="radio" name="has_memory_slot" id="has_memory_slot_all" value=""> All--}}
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="has_memory_slot" id="has_memory_slot_yes" value="1"> Yes
+                        {{ Form::radio('has_memory_slot', '1') }} Yes
+                        {{--<input type="radio" name="has_memory_slot" id="has_memory_slot_yes" value="1"> Yes--}}
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="has_memory_slot" id="has_memory_slot_no" value="0"> No
+                        {{ Form::radio('has_memory_slot', '0') }} No
+                        {{--<input type="radio" name="has_memory_slot" id="has_memory_slot_no" value="0"> No--}}
                     </label>
                 </div>
             </div>
@@ -81,27 +83,33 @@
                 </label>
                 <div class="col-sm-10">
                     <label class="checkbox-inline">
-                        <input type="checkbox" id="RomSize_4" name="rom[]" value="4"> 4
+                        {{ Form::checkbox('rom[]', '4') }} 4
+                        {{--<input type="checkbox" id="RomSize_4" name="rom[]" value="4"> 4--}}
                     </label>
                     <label class="checkbox-inline">
-                        <input type="checkbox" id="RomSize_8" name="rom[]" value="8"> 8
+                        {{ Form::checkbox('rom[]', '8') }} 8
+                        {{--<input type="checkbox" id="RomSize_8" name="rom[]" value="8"> 8--}}
                     </label>
                     <label class="checkbox-inline">
-                        <input type="checkbox" id="RomSize_16" name="rom[]" value="16"> 16
+                        {{ Form::checkbox('rom[]', '16') }} 16
+                        {{--<input type="checkbox" id="RomSize_16" name="rom[]" value="16"> 16--}}
                     </label>
                     <label class="checkbox-inline">
-                        <input type="checkbox" id="RomSize_32" name="rom[]" value="32"> 32
+                        {{ Form::checkbox('rom[]', '32') }} 32
+                        {{--<input type="checkbox" id="RomSize_32" name="rom[]" value="32"> 32--}}
                     </label>
                     <label class="checkbox-inline">
-                        <input type="checkbox" id="RomSize_64" name="rom[]" value="64"> 64
+                        {{ Form::checkbox('rom[]', '64') }} 64
+                        {{--<input type="checkbox" id="RomSize_64" name="rom[]" value="64"> 64--}}
                     </label>
                     <label class="checkbox-inline">
-                        <input type="checkbox" id="RomSize_128" name="rom[]" value="128"> 128
+                        {{ Form::checkbox('rom[]', '128') }} 128
+                        {{--<input type="checkbox" id="RomSize_128" name="rom[]" value="128"> 128--}}
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-2">
+                <div class="col-sm-offset-2 col-sm-8">
                     <button class="btn btn-info" type="submit">送出查詢</button>
                 </div>
             </div>
@@ -109,13 +117,14 @@
             <div class="row">
                 <div class="container">
                 每頁
-                <select name="perPage" id="perPage" onChange="this.form.submit()">
-                    @foreach ($perPageSelect as $perPageCount)
-                        <option value="{{ $perPageCount }}"
-                                {{ $mobiles->perPage() == $perPageCount ? 'selected' : '' }}
-                        >{{ $perPageCount }}</option>
-                    @endforeach
-                </select>
+                {{ Form::select('perPage', $perPageList, null, ['onChange' => 'this.form.submit()']) }}
+                {{--<select name="perPage" id="perPage" onChange="this.form.submit()">--}}
+                    {{--@foreach ($perPageSelect as $perPageCount)--}}
+                        {{--<option value="{{ $perPageCount }}"--}}
+                                {{--{{ $mobiles->perPage() == $perPageCount ? 'selected' : '' }}--}}
+                        {{-->{{ $perPageCount }}</option>--}}
+                    {{--@endforeach--}}
+                {{--</select>--}}
                 筆
                 <span class="pull-right">第 {{ $mobiles->currentPage() }}
                     / {{ $mobiles->lastPage() }} 頁，總筆數 {{ $mobiles->total() }} 筆</span>
