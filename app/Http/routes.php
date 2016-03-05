@@ -29,5 +29,9 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
+    Route::get('mobiles/release/{id}', 'MobilesController@releasePage');
+    Route::patch('mobiles/release/{id}', 'MobilesController@release');
+    Route::patch('mobiles/unrelease/{id}', 'MobilesController@unrelease');
+
     Route::resource('mobiles', 'MobilesController');
 });

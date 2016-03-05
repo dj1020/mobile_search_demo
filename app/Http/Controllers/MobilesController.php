@@ -85,4 +85,28 @@ class MobilesController extends Controller
         return $viewResponse;
     }
 
+    public function releasePage($mobileId)
+    {
+        $brands = Brand::all();
+        $mobile = Mobile::findOrFail($mobileId);
+
+        return view('mobiles.release', compact('brands', 'mobile'));
+    }
+
+    public function release($mobileId)
+    {
+        $mobile = Mobile::findOrFail($mobileId);
+        $mobile->release();
+
+        return back();
+    }
+
+    public function unrelease($mobileId)
+    {
+        $mobile = Mobile::findOrFail($mobileId);
+        $mobile->unrelease();
+
+        return back();
+    }
+
 }
