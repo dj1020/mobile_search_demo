@@ -37,6 +37,7 @@
 
 @section('headerJs')
     <script src="/js/previewImg.js"></script>
+    <script src="//cdn.ckeditor.com/4.4.8/standard/ckeditor.js"></script>
 @endsection
 
 @section('footerJs')
@@ -115,6 +116,19 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="has_memory_slot" class="col-sm-3 control-label">Description</label>
+                    <div class="col-sm-9">
+                        <textarea name="mobile_description" id="description_editor"
+                                  cols="80"
+                                  rows="10">{{ old('mobile_description') }}</textarea>
+                        <script>
+                            CKEDITOR.replace('description_editor');
+                        </script>
+                    </div>
+                </div>
+
             </div>
 
             <div class="col-sm-3 uploader">

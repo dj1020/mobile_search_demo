@@ -22,6 +22,8 @@ class MobilesController extends Controller
 
     public function store(Request $request)
     {
+        return $request->all();
+
         $inputs = $request->except('_token');
 
         $mobileImg = $request->file('mobile_image');
