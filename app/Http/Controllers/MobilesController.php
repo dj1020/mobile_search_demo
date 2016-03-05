@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Brand;
+use App\MobileDescription;
 use DB;
 use App\Mobile;
 use Illuminate\Http\Request;
@@ -22,8 +23,6 @@ class MobilesController extends Controller
 
     public function store(Request $request)
     {
-        return $request->all();
-
         $inputs = $request->except('_token');
 
         $mobileImg = $request->file('mobile_image');
@@ -36,6 +35,10 @@ class MobilesController extends Controller
         }
 
         $mobile = Mobile::create($inputs);
+        MobileDescription::create([
+            'content' => $inputs['mobile_description'],
+            'mobile_id' => $mobile->id,
+        ]);
 
         return redirect('/mobiles');
     }
