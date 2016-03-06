@@ -5,12 +5,20 @@
         table {
             margin-top: 10px;
         }
+
         input[name=smallest_size], input[name=biggest_size] {
             max-width: 10%;
             display: inline-block;
         }
+
         button {
             display: inline-block;
+        }
+
+        @media print {
+            .search-form, .btn, ul.pagination {
+                display: none;
+            }
         }
     </style>
 @endsection
@@ -19,6 +27,7 @@
 @endsection
 
 @section('footerJs')
+    <script src="/js/deleteMobile.js"></script>
 @endsection
 
 @section('body')
@@ -26,13 +35,16 @@
         <h1>
             Search
             <a href="/mobiles/create" class="btn btn-primary pull-right">新增</a>
+            <a href="/mobiles/create" class="btn btn-primary pull-right"
+               onclick="window.print()">列印</a>
         </h1>
 
         <hr/>
 
-{{--        {{ var_dump($request->all()) }}--}}
+        {{--        {{ var_dump($request->all()) }}--}}
 
         {!! Form::open(['method' => 'get', 'class' => 'form-horizontal']) !!}
+        <div class="row search-form">
             <div class="form-group">
                 <label for="brandSelector" class="control-label col-sm-2">Brand: </label>
                 <div class="col-sm-3">
@@ -95,42 +107,45 @@
                     <a class="btn btn-default" href="/mobiles">重設條件</a>
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="container">
+        <div class="row">
+            <div class="container">
                 每頁
                 {{ Form::select('perPage', $perPageList, null, ['onChange' => 'this.form.submit()']) }}
                 筆
                 <span class="pull-right">第 {{ $mobiles->currentPage() }}
                     / {{ $mobiles->lastPage() }} 頁，總筆數 {{ $mobiles->total() }} 筆</span>
-                </div>
             </div>
-            <table class="table">
+        </div>
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Thumbnail</th>
+                <th>Brand</th>
+                <th>Model Name</th>
+                <th>Monitor Size(")</th>
+                <th>Weight(g)</th>
+                <th>Rom Size(GB)</th>
+                <th>Camera Pixel</th>
+                <th>Memory Slot</th>
+                <th>Action</th>
+            </tr>
+            @foreach ($mobiles as $mobile)
                 <tr>
-                    <th>ID</th>
-                    <th>Thumbnail</th>
-                    <th>Brand</th>
-                    <th>Model Name</th>
-                    <th>Monitor Size(")</th>
-                    <th>Weight(g)</th>
-                    <th>Rom Size(GB)</th>
-                    <th>Camera Pixel</th>
-                    <th>Memory Slot</th>
+                    <td>{{ $mobile->id }}</td>
+                    <td><img src="{{ $mobile->pic }}" alt="" height="60"/></td>
+                    <td>{{ $mobile->brand->name }}</td>
+                    <td>{{ $mobile->name }}</td>
+                    <td>{{ $mobile->monitor_size }}</td>
+                    <td>{{ $mobile->weight }}</td>
+                    <td>{{ $mobile->rom }}</td>
+                    <td>{{ $mobile->camera_pixel }} 萬像素</td>
+                    <td>{{ ($mobile->has_memory_slot) ? "Yes" : "No" }}</td>
+                    <td><button class="btn btn-danger delete-btn" data-id="{{ $mobile->id }}">Del</button></td>
                 </tr>
-                @foreach ($mobiles as $mobile)
-                    <tr>
-                        <td>{{ $mobile->id }}</td>
-                        <td><img src="{{ $mobile->pic }}" alt="" height="60"/></td>
-                        <td>{{ $mobile->brand->name }}</td>
-                        <td>{{ $mobile->name }}</td>
-                        <td>{{ $mobile->monitor_size }}</td>
-                        <td>{{ $mobile->weight }}</td>
-                        <td>{{ $mobile->rom }}</td>
-                        <td>{{ $mobile->camera_pixel }} 萬像素</td>
-                        <td>{{ ($mobile->has_memory_slot) ? "Yes" : "No" }}</td>
-                    </tr>
-                @endforeach
-            </table>
+            @endforeach
+        </table>
         {!! Form::close() !!}
 
         {!! $mobiles->appends( request()->except('page') )->links() !!}

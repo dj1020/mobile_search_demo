@@ -23,6 +23,11 @@ class Mobile extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function description()
+    {
+        return $this->hasOne(MobileDescription::class);
+    }
+
     public function scopeWithBrand($query, $brandId)
     {
         return (empty($brandId) || $brandId == 0)

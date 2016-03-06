@@ -27,11 +27,16 @@ Route::get('/', function () {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+Route::delete('mobiles', 'MobilesController@multiDestroy');
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('mobiles/release/{id}', 'MobilesController@releasePage');
     Route::patch('mobiles/release/{id}', 'MobilesController@release');
     Route::patch('mobiles/unrelease/{id}', 'MobilesController@unrelease');
 
+//    Route::delete('mobiles/{id}', 'MobilesController@destroy');
     Route::resource('mobiles', 'MobilesController');
+
+    Route::get('excel/export', 'ExcelController@export');
+    Route::get('excel/export/mobiles', 'ExcelController@exportMobiles');
 });

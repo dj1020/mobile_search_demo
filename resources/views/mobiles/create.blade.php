@@ -37,7 +37,7 @@
 
 @section('headerJs')
     <script src="/js/previewImg.js"></script>
-    <script src="//cdn.ckeditor.com/4.4.8/standard/ckeditor.js"></script>
+    <script src="/js/lib/ckeditor/ckeditor.js"></script>
 @endsection
 
 @section('footerJs')
@@ -122,9 +122,37 @@
                     <div class="col-sm-9">
                         <textarea name="mobile_description" id="description_editor"
                                   cols="80"
-                                  rows="10">{{ old('mobile_description') }}</textarea>
+                                  rows="15">{{ old('mobile_description') }}</textarea>
                         <script>
-                            CKEDITOR.replace('description_editor');
+                            CKEDITOR.replace('description_editor', {
+                                skin: 'office2013'
+                            });
+                        </script>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="has_memory_slot" class="col-sm-3 control-label">Description2</label>
+                    <div class="col-sm-9">
+                        <textarea name="mobile_description2" id="description_editor2"
+                                  cols="80"
+                                  rows="15">{{ old('mobile_description') }}</textarea>
+                        <script>
+                            CKEDITOR.replace('description_editor2', {
+//                                defaultLanguage: 'zh',
+                                language: 'zh',
+                                skin: 'office2013',
+                                preset: 'standard',
+                                uiColor: '#9AB8F3',
+                                removeButtons : 'Maximize',
+                                resize_enabled: false,
+                                toolbar: [
+                                    { name: 'document', items: [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates' ] },
+                                    { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+                                    '/',
+                                    { name: 'basicstyles', items: [ 'Bold', 'Italic' ] }
+                                ]
+                            });
                         </script>
                     </div>
                 </div>
