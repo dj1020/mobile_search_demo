@@ -40,3 +40,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('excel/export', 'ExcelController@export');
     Route::get('excel/export/mobiles', 'ExcelController@exportMobiles');
 });
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+});

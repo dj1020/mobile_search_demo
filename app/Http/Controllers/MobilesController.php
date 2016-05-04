@@ -14,6 +14,14 @@ use App\Http\Controllers\Controller;
 class MobilesController extends Controller
 {
 
+    /**
+     * MobilesController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth.admin', ['except' => 'index']);
+    }
+
     public function index(Request $request)
     {
         $perPageSelect = [5, 8, 12, 24];

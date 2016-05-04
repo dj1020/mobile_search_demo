@@ -159,7 +159,7 @@ return [
         // Ken customization
         Collective\Html\HtmlServiceProvider::class,
         'Maatwebsite\Excel\ExcelServiceProvider',
-
+        Spatie\Permission\PermissionServiceProvider::class,
     ],
 
     /*
