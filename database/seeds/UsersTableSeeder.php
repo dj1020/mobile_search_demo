@@ -12,16 +12,21 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-//        DB::table('users')->truncate();
+        DB::table('users')->truncate();
 
-        $users = factory(App\User::class, 3)->create([
-            'password' => bcrypt('pass')
+        factory(App\User::class)->create([
+            'username' => 'admin',
+            'password' => bcrypt('admin')
         ]);
 
-        $users->each(function(User $user){
-            $user->assignRole('guest');
-        });
+        factory(App\User::class)->create([
+            'username' => 'client',
+            'password' => bcrypt('client')
+        ]);
 
-        $users->get(0)->assignRole('admin');
+        factory(App\User::class)->create([
+            'username' => 'editor',
+            'password' => bcrypt('editor')
+        ]);
     }
 }

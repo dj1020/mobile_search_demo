@@ -24,6 +24,5 @@ class SetDefaultFalseToHasMemorySlot extends Migration
      */
     public function down()
     {
-        DB::statement('ALTER TABLE mobiles ALTER has_memory_slot DROP DEFAULT');
     }
 }

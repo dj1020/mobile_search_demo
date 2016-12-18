@@ -23,9 +23,7 @@
 # Dump of table brands
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `brands`;
-
-CREATE TABLE `brands` (
+CREATE TABLE IF NOT EXISTS `brands` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -50,9 +48,7 @@ UNLOCK TABLES;
 # Dump of table migrations
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `migrations`;
-
-CREATE TABLE `migrations` (
+CREATE TABLE IF NOT EXISTS  `migrations` (
   `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -75,9 +71,7 @@ UNLOCK TABLES;
 # Dump of table mobiles
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `mobiles`;
-
-CREATE TABLE `mobiles` (
+CREATE TABLE IF NOT EXISTS `mobiles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `monitor_size` double(8,2) NOT NULL,
@@ -171,9 +165,7 @@ CREATE TABLE `password_resets` (
 # Dump of table users
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `users`;
-
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,

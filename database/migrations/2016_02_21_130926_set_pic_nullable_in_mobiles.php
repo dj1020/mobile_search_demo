@@ -24,8 +24,5 @@ class SetPicNullableInMobiles extends Migration
      */
     public function down()
     {
-        Schema::table('mobiles', function (Blueprint $table) {
-            $table->string('pic')->nullable(false)->change();
-        });
     }
 }

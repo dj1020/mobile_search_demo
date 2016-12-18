@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UserTableSeeder::class);
+        DB::unprepared(file_get_contents(base_path('/mobile_search_20160220.sql')));
     }
 }
