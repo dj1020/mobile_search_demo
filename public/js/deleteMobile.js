@@ -12,7 +12,7 @@
 
         $.ajax({
             url: '/mobiles/' + id,
-            method: 'POST',
+            method: 'DELETE',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
@@ -24,7 +24,7 @@
         }).always(function () {
             console.log('Ajax request sent!');
         });
-        
+
     });
 
 })(jQuery);
